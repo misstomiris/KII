@@ -1,0 +1,120 @@
+@import '../assets/styles/variables.scss';
+
+.notificationsContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: $z-index-tooltip;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  max-width: 350px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  pointer-events: none;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--text-secondary-rgb), 0.5);
+    border-radius: 3px;
+  }
+}
+
+.notification {
+  background-color: var(--bg-secondary);
+  border-left: 4px solid;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  box-shadow: $box-shadow-md;
+  animation: slideIn 0.3s ease forwards;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: auto;
+  max-width: 100%;
+  
+  &.success {
+    border-color: $success-color;
+    .icon {
+      color: $success-color;
+    }
+  }
+  
+  &.error {
+    border-color: $error-color;
+    .icon {
+      color: $error-color;
+    }
+  }
+  
+  &.warning {
+    border-color: $warning-color;
+    .icon {
+      color: $warning-color;
+    }
+  }
+  
+  &.info {
+    border-color: $info-color;
+    .icon {
+      color: $info-color;
+    }
+  }
+  
+  .icon {
+    font-size: $font-size-xl;
+    margin-right: $spacing-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content {
+    flex: 1;
+    overflow: hidden;
+    
+    h4 {
+      margin: 0;
+      font-size: $font-size-md;
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: $spacing-xs;
+    }
+    
+    p {
+      margin: 0;
+      font-size: $font-size-sm;
+      color: var(--text-secondary);
+      word-break: break-word;
+    }
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: $font-size-xl;
+    cursor: pointer;
+    margin-left: $spacing-sm;
+    line-height: 1;
+    padding: 0;
+    transition: color $transition-speed-fast $transition-timing;
+    
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

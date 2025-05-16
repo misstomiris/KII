@@ -1,0 +1,805 @@
+@import '../../assets/styles/variables.scss';
+
+.ai-assistant-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  .assistant-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid $border-color;
+    
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: $text-primary;
+    }
+    
+    .tab-navigation {
+      display: flex;
+      gap: 12px;
+      
+      .tab-button {
+        padding: 8px 16px;
+        background: none;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: $text-secondary;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        &:hover {
+          background-color: rgba($primary-color, 0.08);
+          color: $primary-color;
+        }
+        
+        &.active {
+          background-color: rgba($primary-color, 0.12);
+          color: $primary-color;
+          font-weight: 600;
+        }
+        
+        svg {
+          color: currentColor;
+        }
+      }
+    }
+  }
+  
+  .assistant-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    
+    .chat-container {
+      display: flex;
+      height: 100%;
+      
+      .chat-sidebar {
+        width: 300px;
+        min-width: 300px;
+        border-right: 1px solid $border-color;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        
+        .queries-search {
+          padding: 16px;
+          position: relative;
+          
+          .search-input-container {
+            position: relative;
+            
+            .search-icon {
+              position: absolute;
+              left: 12px;
+              top: 50%;
+              transform: translateY(-50%);
+              color: $text-secondary;
+            }
+            
+            .search-input {
+              width: 100%;
+              padding: 10px 10px 10px 36px;
+              border-radius: 6px;
+              border: 1px solid $border-color;
+              background-color: $bg-secondary;
+              color: $text-primary;
+              font-size: 0.9rem;
+              
+              &:focus {
+                outline: none;
+                border-color: $primary-color;
+                box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+              }
+            }
+          }
+          
+          .suggested-queries {
+            position: absolute;
+            top: calc(100% - 4px);
+            left: 16px;
+            right: 16px;
+            background-color: $card-bg;
+            border-radius: 6px;
+            border: 1px solid $border-color;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            max-height: 250px;
+            overflow-y: auto;
+            
+            .suggested-query {
+              padding: 10px 14px;
+              cursor: pointer;
+              font-size: 0.9rem;
+              color: $text-primary;
+              transition: background-color 0.2s;
+              
+              &:hover {
+                background-color: rgba($primary-color, 0.08);
+              }
+              
+              &:not(:last-child) {
+                border-bottom: 1px solid $border-color;
+              }
+            }
+          }
+        }
+        
+        .predefined-queries {
+          flex: 1;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 0 16px 16px;
+          
+          .predefined-section,
+          .latest-threats-section {
+            h3 {
+              font-size: 0.9rem;
+              font-weight: 600;
+              margin-bottom: 12px;
+              color: $text-primary;
+            }
+          }
+          
+          .queries-dropdown {
+            position: relative;
+            
+            .dropdown-button {
+              width: 100%;
+              padding: 10px 12px;
+              background-color: $bg-secondary;
+              border: 1px solid $border-color;
+              border-radius: 6px;
+              font-size: 0.9rem;
+              color: $text-primary;
+              text-align: left;
+              cursor: pointer;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              
+              &:hover {
+                background-color: rgba($bg-secondary, 0.7);
+              }
+            }
+            
+            .dropdown-content {
+              position: absolute;
+              top: calc(100% + 4px);
+              left: 0;
+              right: 0;
+              background-color: $card-bg;
+              border-radius: 6px;
+              border: 1px solid $border-color;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              z-index: 100;
+              max-height: 350px;
+              overflow-y: auto;
+              
+              .dropdown-category {
+                &:not(:last-child) {
+                  border-bottom: 1px solid $border-color;
+                }
+                
+                h4 {
+                  padding: 10px 12px;
+                  font-size: 0.85rem;
+                  font-weight: 600;
+                  color: $text-secondary;
+                  background-color: rgba($bg-secondary, 0.5);
+                }
+                
+                .dropdown-queries {
+                  .dropdown-query {
+                    padding: 10px 12px;
+                    cursor: pointer;
+                    font-size: 0.85rem;
+                    color: $text-primary;
+                    transition: background-color 0.2s;
+                    
+                    &:hover {
+                      background-color: rgba($primary-color, 0.08);
+                    }
+                    
+                    &:not(:last-child) {
+                      border-bottom: 1px solid rgba($border-color, 0.5);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+          .latest-threats-list {
+            .latest-threat-item {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              padding: 10px 12px;
+              border-radius: 6px;
+              background-color: $bg-secondary;
+              margin-bottom: 8px;
+              cursor: pointer;
+              transition: background-color 0.2s;
+              
+              &:hover {
+                background-color: rgba($bg-secondary, 0.7);
+              }
+              
+              .threat-severity {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                
+                &.critical {
+                  background-color: $danger-color;
+                }
+                
+                &.high {
+                  background-color: $warning-color;
+                }
+                
+                &.medium {
+                  background-color: $info-color;
+                }
+                
+                &.low {
+                  background-color: $success-color;
+                }
+              }
+              
+              .threat-name {
+                font-size: 0.85rem;
+                color: $text-primary;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
+          }
+        }
+      }
+      
+      .chat-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        
+        .messages-container {
+          flex: 1;
+          overflow-y: auto;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          
+          .welcome-message {
+            margin: auto;
+            max-width: 600px;
+            text-align: center;
+            padding: 40px 20px;
+            
+            .ai-assistant-icon {
+              width: 64px;
+              height: 64px;
+              background-color: rgba($primary-color, 0.1);
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 16px;
+              
+              svg {
+                color: $primary-color;
+              }
+            }
+            
+            h2 {
+              font-size: 1.5rem;
+              font-weight: 600;
+              margin-bottom: 12px;
+              color: $text-primary;
+            }
+            
+            p {
+              color: $text-secondary;
+              font-size: 1rem;
+              margin-bottom: 24px;
+            }
+            
+            .welcome-examples {
+              p {
+                margin-bottom: 12px;
+                font-weight: 500;
+              }
+              
+              .examples-list {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                
+                .example {
+                  padding: 12px 16px;
+                  background-color: rgba($primary-color, 0.08);
+                  border-radius: 8px;
+                  color: $text-primary;
+                  font-size: 0.9rem;
+                  cursor: pointer;
+                  transition: background-color 0.2s;
+                  text-align: left;
+                  
+                  &:hover {
+                    background-color: rgba($primary-color, 0.15);
+                  }
+                }
+              }
+            }
+          }
+          
+          .message {
+            display: flex;
+            gap: 12px;
+            max-width: 85%;
+            
+            &.user {
+              align-self: flex-end;
+              flex-direction: row-reverse;
+              
+              .message-content {
+                background-color: rgba($primary-color, 0.12);
+                border-radius: 16px 16px 2px 16px;
+                
+                .message-text {
+                  color: $text-primary;
+                }
+              }
+            }
+            
+            &.assistant {
+              align-self: flex-start;
+              
+              .message-content {
+                background-color: $bg-secondary;
+                border-radius: 16px 16px 16px 2px;
+              }
+            }
+            
+            &.error {
+              align-self: center;
+              
+              .message-content {
+                background-color: rgba($danger-color, 0.1);
+                border-radius: 8px;
+                border-left: 4px solid $danger-color;
+                
+                .message-text {
+                  color: $danger-color;
+                }
+              }
+            }
+            
+            &.assistant-typing {
+              align-self: flex-start;
+              
+              .message-content {
+                background-color: $bg-secondary;
+                border-radius: 16px 16px 16px 2px;
+                padding: 12px 16px;
+                
+                .typing-indicator {
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  
+                  span {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: $text-secondary;
+                    opacity: 0.6;
+                    animation: typing 1.4s infinite ease-in-out both;
+                    
+                    &:nth-child(1) {
+                      animation-delay: 0s;
+                    }
+                    
+                    &:nth-child(2) {
+                      animation-delay: 0.2s;
+                    }
+                    
+                    &:nth-child(3) {
+                      animation-delay: 0.4s;
+                    }
+                  }
+                }
+              }
+            }
+            
+            .message-avatar {
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+              
+              &.user {
+                background-color: rgba($primary-color, 0.2);
+                
+                .avatar-initials {
+                  font-size: 0.9rem;
+                  font-weight: 600;
+                  color: $primary-color;
+                }
+              }
+              
+              &.assistant {
+                background-color: rgba($info-color, 0.2);
+                color: $info-color;
+              }
+            }
+            
+            .message-content {
+              padding: 12px 16px;
+              
+              .message-text {
+                font-size: 0.95rem;
+                color: $text-primary;
+                line-height: 1.5;
+                word-break: break-word;
+                
+                .message-link {
+                  color: $primary-color;
+                  text-decoration: underline;
+                  
+                  &:hover {
+                    opacity: 0.8;
+                  }
+                }
+              }
+              
+              .message-time {
+                font-size: 0.75rem;
+                color: $text-secondary;
+                margin-top: 6px;
+                text-align: right;
+              }
+            }
+          }
+        }
+        
+        .input-container {
+          padding: 16px 20px;
+          border-top: 1px solid $border-color;
+          display: flex;
+          gap: 12px;
+          
+          .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid $border-color;
+            background-color: $bg-secondary;
+            color: $text-primary;
+            font-size: 0.95rem;
+            resize: none;
+            
+            &:focus {
+              outline: none;
+              border-color: $primary-color;
+              box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+            }
+          }
+          
+          .send-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            border: none;
+            background-color: $primary-color;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            flex-shrink: 0;
+            
+            &:hover {
+              background-color: darken($primary-color, 5%);
+            }
+            
+            &:disabled {
+              background-color: lighten($primary-color, 20%);
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+    
+    .analyzer-container {
+      display: flex;
+      height: 100%;
+      
+      .analyzer-sidebar {
+        width: 320px;
+        min-width: 320px;
+        border-right: 1px solid $border-color;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 20px;
+        gap: 24px;
+        
+        .file-upload-section {
+          h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: $text-primary;
+          }
+          
+          .file-upload-area {
+            margin-bottom: 16px;
+            
+            .file-drop-zone {
+              border: 2px dashed $border-color;
+              border-radius: 8px;
+              padding: 24px 16px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              cursor: pointer;
+              transition: all 0.2s;
+              
+              &:hover {
+                border-color: $primary-color;
+                background-color: rgba($primary-color, 0.03);
+              }
+              
+              svg {
+                color: $text-secondary;
+                margin-bottom: 12px;
+              }
+              
+              p {
+                margin-bottom: 8px;
+                font-size: 0.9rem;
+                color: $text-primary;
+                word-break: break-all;
+              }
+              
+              .file-format-hint {
+                font-size: 0.75rem;
+                color: $text-secondary;
+              }
+            }
+          }
+          
+          .analyze-button {
+            width: 100%;
+            padding: 12px;
+            background-color: $primary-color;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            
+            &:hover {
+              background-color: darken($primary-color, 5%);
+            }
+            
+            &:disabled {
+              background-color: lighten($primary-color, 20%);
+              cursor: not-allowed;
+            }
+            
+            .spin-icon {
+              animation: spin 1.5s linear infinite;
+            }
+            
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+          }
+        }
+        
+        .analytics-summary {
+          h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: $text-primary;
+          }
+          
+          .analytics-data {
+            background-color: $bg-secondary;
+            border-radius: 8px;
+            padding: 16px;
+            
+            .analytics-item {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 12px;
+              
+              .analytics-label {
+                font-size: 0.85rem;
+                color: $text-secondary;
+              }
+              
+              .analytics-value {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: $text-primary;
+                
+                &.danger {
+                  color: $danger-color;
+                }
+                
+                &.warning {
+                  color: $warning-color;
+                }
+                
+                &.success {
+                  color: $success-color;
+                }
+              }
+            }
+            
+            .analytics-chart {
+              margin-top: 16px;
+              border-top: 1px solid $border-color;
+              padding-top: 16px;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              color: $primary-color;
+              font-size: 0.85rem;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+      
+      .analyzer-main {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+      }
+    }
+    
+    .recommendations-container {
+      height: 100%;
+      overflow-y: auto;
+      padding: 20px;
+    }
+  }
+}
+
+/* Dark theme overrides */
+:global(.dark) .ai-assistant-page {
+  .assistant-header {
+    border-bottom-color: $dark-border-color;
+  }
+  
+  .assistant-content {
+    .chat-container {
+      .chat-sidebar {
+        border-right-color: $dark-border-color;
+        
+        .queries-search {
+          .search-input {
+            background-color: $dark-bg-secondary;
+            border-color: $dark-border-color;
+          }
+          
+          .suggested-queries {
+            background-color: $dark-card-bg;
+            border-color: $dark-border-color;
+            
+            .suggested-query {
+              &:not(:last-child) {
+                border-bottom-color: $dark-border-color;
+              }
+            }
+          }
+        }
+        
+        .predefined-queries {
+          .queries-dropdown {
+            .dropdown-button {
+              background-color: $dark-bg-secondary;
+              border-color: $dark-border-color;
+            }
+            
+            .dropdown-content {
+              background-color: $dark-card-bg;
+              border-color: $dark-border-color;
+              
+              .dropdown-category {
+                &:not(:last-child) {
+                  border-bottom-color: $dark-border-color;
+                }
+                
+                h4 {
+                  background-color: rgba($dark-bg-secondary, 0.5);
+                }
+                
+                .dropdown-queries {
+                  .dropdown-query {
+                    &:not(:last-child) {
+                      border-bottom-color: rgba($dark-border-color, 0.5);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+          .latest-threats-list {
+            .latest-threat-item {
+              background-color: $dark-bg-secondary;
+            }
+          }
+        }
+      }
+      
+      .chat-main {
+        .input-container {
+          border-top-color: $dark-border-color;
+          
+          .chat-input {
+            background-color: $dark-bg-secondary;
+            border-color: $dark-border-color;
+          }
+        }
+      }
+    }
+    
+    .analyzer-container {
+      .analyzer-sidebar {
+        border-right-color: $dark-border-color;
+        
+        .file-upload-section {
+          .file-upload-area {
+            .file-drop-zone {
+              border-color: $dark-border-color;
+            }
+          }
+        }
+        
+        .analytics-summary {
+          .analytics-data {
+            background-color: $dark-bg-secondary;
+            
+            .analytics-chart {
+              border-top-color: $dark-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

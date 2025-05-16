@@ -1,0 +1,122 @@
+// Основные цвета
+$primary-color: #1e88e5;
+$primary-light: #64b5f6;
+$primary-dark: #0d47a1;
+
+$secondary-color: #7b1fa2;
+$secondary-light: #ba68c8;
+$secondary-dark: #4a148c;
+
+// Функциональные цвета
+$success-color: #43a047;
+$error-color: #e53935;
+$warning-color: #ffa000;
+$info-color: #039be5;
+
+// Светлая тема
+$light-bg-primary: #f5f7fa;
+$light-bg-secondary: #ffffff;
+$light-text-primary: #2c3e50;
+$light-text-secondary: #7f8c8d;
+$light-border-color: #e0e0e0;
+$light-shadow-color: rgba(0, 0, 0, 0.1);
+
+// Темная тема
+$dark-bg-primary: #121212;
+$dark-bg-secondary: #1e1e1e;
+$dark-text-primary: #ecf0f1;
+$dark-text-secondary: #bdc3c7;
+$dark-border-color: #333333;
+$dark-shadow-color: rgba(0, 0, 0, 0.5);
+
+// Размеры и отступы
+$header-height: 70px;
+$sidebar-width: 250px;
+$footer-height: 60px;
+
+$spacing-xs: 0.25rem;  // 4px
+$spacing-sm: 0.5rem;   // 8px
+$spacing-md: 1rem;     // 16px
+$spacing-lg: 1.5rem;   // 24px
+$spacing-xl: 2rem;     // 32px
+$spacing-xxl: 3rem;    // 48px
+
+// Радиусы границ
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-full: 50%;
+
+// Шрифты
+$font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-family-secondary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+$font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-md: 1rem;      // 16px
+$font-size-lg: 1.125rem;  // 18px
+$font-size-xl: 1.25rem;   // 20px
+$font-size-xxl: 1.5rem;   // 24px
+$font-size-xxxl: 2rem;    // 32px
+
+// Переходы
+$transition-speed-fast: 0.15s;
+$transition-speed-normal: 0.3s;
+$transition-speed-slow: 0.5s;
+$transition-timing: ease;
+
+// Z-индексы
+$z-index-dropdown: 1000;
+$z-index-sticky: 1010;
+$z-index-fixed: 1020;
+$z-index-modal-backdrop: 1030;
+$z-index-modal: 1040;
+$z-index-popover: 1050;
+$z-index-tooltip: 1060;
+
+// Тени
+$box-shadow-sm: 0 2px 5px var(--shadow-color);
+$box-shadow-md: 0 4px 10px var(--shadow-color);
+$box-shadow-lg: 0 8px 20px var(--shadow-color);
+$box-shadow-xl: 0 12px 28px var(--shadow-color);
+
+// Размеры контейнеров
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1140px;
+$container-xxl: 1320px;
+
+// Медиа-запросы
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+
+// Основные цвета
+$primary-color: #1e88e5;
+$secondary-color: #7b1fa2;
+
+// Фоновые цвета
+$bg-light: #f5f7fa;
+$bg-dark: #121212;
+
+// Текстовые цвета
+$text-light: #2c3e50;
+$text-dark: #ecf0f1;
+
+// Отступы
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Скругления
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;

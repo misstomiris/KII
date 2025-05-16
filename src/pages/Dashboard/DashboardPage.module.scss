@@ -1,0 +1,401 @@
+@import '../../assets/styles/variables.scss';
+
+.dashboard {
+  color: var(--text-primary);
+  
+  .dashboardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+    
+    h1 {
+      font-size: $font-size-xxxl;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .userGreeting {
+      text-align: right;
+      
+      p {
+        margin: 0;
+        
+        span {
+          font-weight: 600;
+          color: var(--accent-primary);
+        }
+      }
+      
+      .currentDate {
+        font-size: $font-size-sm;
+        color: var(--text-secondary);
+        margin-top: $spacing-xs;
+      }
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-md;
+      
+      .userGreeting {
+        text-align: left;
+      }
+    }
+  }
+  
+  .statsCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .alerts {
+    margin-bottom: $spacing-xl;
+    
+    h2 {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-md;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--accent-primary);
+        border-radius: $border-radius-sm;
+      }
+    }
+    
+    .alertsContainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $spacing-md;
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      @media (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  
+  .dashboardGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: $spacing-xl;
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      grid-template-columns: 1fr;
+    }
+    
+    h2 {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-md;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--accent-primary);
+        border-radius: $border-radius-sm;
+      }
+    }
+    
+    .securityScore {
+      grid-column: 1;
+      grid-row: 1;
+      background: linear-gradient(to right bottom, var(--bg-secondary), rgba(var(--accent-primary-rgb), 0.05));
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $box-shadow-md;
+      
+      .scoreContainer {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xl;
+        
+        .scoreCircle {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background: conic-gradient(
+            var(--score-color) 0% var(--score-value),
+            var(--bg-primary) var(--score-value) 100%
+          );
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+          }
+          
+          .scoreValue {
+            position: relative;
+            z-index: 1;
+            font-size: $font-size-xxl;
+            font-weight: 700;
+            color: var(--score-color);
+          }
+        }
+        
+        .scoreDetails {
+          flex: 1;
+          
+          h3 {
+            margin: 0 0 $spacing-sm;
+            font-size: $font-size-lg;
+          }
+          
+          p {
+            margin: 0 0 $spacing-md;
+            color: var(--text-secondary);
+          }
+          
+          .viewDetailsButton {
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: $border-radius-md;
+            padding: $spacing-sm $spacing-lg;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all $transition-speed-normal $transition-timing;
+            
+            &:hover {
+              background-color: var(--accent-secondary);
+              transform: translateY(-2px);
+              box-shadow: $box-shadow-sm;
+            }
+          }
+        }
+        
+        @media (max-width: $breakpoint-sm) {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 1 / span 2;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+    
+    .threatMapSection {
+      grid-column: 2 / span 2;
+      grid-row: 1;
+      background-color: var(--bg-secondary);
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $box-shadow-md;
+      
+      .mapContainer {
+        height: 300px;
+        border-radius: $border-radius-md;
+        overflow: hidden;
+      }
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+    
+    .eventStats, .severityChart {
+      background-color: var(--bg-secondary);
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $box-shadow-md;
+      
+      .chartContainer {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    
+    .eventStats {
+      grid-column: 1;
+      grid-row: 2;
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 1;
+        grid-row: 3;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+    
+    .severityChart {
+      grid-column: 2;
+      grid-row: 2;
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 2;
+        grid-row: 3;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+    
+    .activityTimeline {
+      grid-column: 3;
+      grid-row: 2;
+      background-color: var(--bg-secondary);
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $box-shadow-md;
+      
+      .chartContainer {
+        height: 300px;
+      }
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 1 / span 2;
+        grid-row: 4;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+    
+    .recentEvents, .recentFiles {
+      background-color: var(--bg-secondary);
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $box-shadow-md;
+      
+      .viewAllButton {
+        display: block;
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--accent-primary);
+        border-radius: $border-radius-md;
+        padding: $spacing-sm;
+        margin-top: $spacing-md;
+        text-align: center;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all $transition-speed-normal $transition-timing;
+        
+        &:hover {
+          background-color: var(--accent-primary);
+          color: white;
+        }
+      }
+    }
+    
+    .recentEvents {
+      grid-column: 1 / span 2;
+      grid-row: 3;
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 1 / span 2;
+        grid-row: 5;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+    
+    .recentFiles {
+      grid-column: 3;
+      grid-row: 3;
+      
+      @media (max-width: $breakpoint-lg) {
+        grid-column: 1 / span 2;
+        grid-row: 6;
+      }
+      
+      @media (max-width: $breakpoint-md) {
+        grid-column: 1;
+      }
+    }
+  }
+  
+  .loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(var(--accent-primary-rgb), 0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent-primary);
+      animation: spin 1s linear infinite;
+      margin-bottom: $spacing-md;
+    }
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    p {
+      color: var(--text-secondary);
+      font-size: $font-size-lg;
+    }
+  }
+}

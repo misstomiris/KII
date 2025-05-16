@@ -1,0 +1,70 @@
+@import '../../../assets/styles/variables.scss';
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+  
+  // Тема по умолчанию (светлая)
+  --bg-primary: #{$light-bg-primary};
+  --bg-secondary: #{$light-bg-secondary};
+  --text-primary: #{$light-text-primary};
+  --text-secondary: #{$light-text-secondary};
+  --accent-primary: #{$primary-color};
+  --accent-secondary: #{$secondary-color};
+  --border-color: #{$light-border-color};
+  --shadow-color: #{$light-shadow-color};
+  --success-color: #{$success-color};
+  --error-color: #{$error-color};
+  --warning-color: #{$warning-color};
+  --info-color: #{$info-color};
+  
+  // Темная тема
+  &.dark {
+    --bg-primary: #{$dark-bg-primary};
+    --bg-secondary: #{$dark-bg-secondary};
+    --text-primary: #{$dark-text-primary};
+    --text-secondary: #{$dark-text-secondary};
+    --border-color: #{$dark-border-color};
+    --shadow-color: #{$dark-shadow-color};
+  }
+
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    
+    @media (min-width: 768px) {
+      margin-left: 250px; // Ширина сайдбара
+    }
+  }
+
+  .content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    position: relative;
+    
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+  
+  .pageContent {
+    background-color: var(--bg-secondary);
+    border-radius: $border-radius-lg;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    padding: 2rem;
+    min-height: calc(100vh - 240px); // Учитываем высоту навбара, футера и паддингов
+    
+    @media (max-width: 768px) {
+      padding: 1rem;
+      min-height: calc(100vh - 200px);
+    }
+  }
+}

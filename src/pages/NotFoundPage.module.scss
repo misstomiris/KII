@@ -1,0 +1,138 @@
+@import '../assets/styles/variables.scss';
+
+.not-found-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $bg-primary;
+  
+  .not-found-content {
+    text-align: center;
+    padding: 40px;
+    max-width: 500px;
+    
+    .not-found-icon {
+      width: 120px;
+      height: 120px;
+      background-color: rgba($primary-color, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      
+      svg {
+        color: $primary-color;
+      }
+    }
+    
+    .not-found-title {
+      font-size: 6rem;
+      font-weight: 700;
+      color: $primary-color;
+      margin: 0 0 16px;
+      line-height: 1;
+    }
+    
+    .not-found-subtitle {
+      font-size: 2rem;
+      font-weight: 600;
+      color: $text-primary;
+      margin: 0 0 16px;
+    }
+    
+    .not-found-message {
+      font-size: 1.1rem;
+      color: $text-secondary;
+      margin: 0 0 32px;
+    }
+    
+    .not-found-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      
+      .action-button {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all $transition-fast;
+        
+        &.home {
+          background-color: $primary-color;
+          color: white;
+          border: none;
+          
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+        
+        &.back {
+          background-color: transparent;
+          color: $text-secondary;
+          border: 1px solid $border-color;
+          
+          &:hover {
+            background-color: $bg-secondary;
+            border-color: $text-secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Медиа-запросы для адаптивного дизайна */
+@media (max-width: $breakpoint-sm) {
+  .not-found-page {
+    .not-found-content {
+      padding: 20px;
+      
+      .not-found-title {
+        font-size: 4rem;
+      }
+      
+      .not-found-subtitle {
+        font-size: 1.5rem;
+      }
+      
+      .not-found-actions {
+        flex-direction: column;
+        width: 100%;
+        
+        .action-button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+/* Темная тема */
+:global(.dark) .not-found-page {
+  background-color: $dark-bg-primary;
+  
+  .not-found-content {
+    .not-found-actions {
+      .action-button {
+        &.back {
+          border-color: $dark-border-color;
+          
+          &:hover {
+            background-color: $dark-bg-secondary;
+            border-color: $dark-text-secondary;
+          }
+        }
+      }
+    }
+  }
+}

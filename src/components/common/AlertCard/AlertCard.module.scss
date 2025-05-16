@@ -1,0 +1,108 @@
+@import '../../../assets/styles/variables.scss';
+
+.alertCard {
+  background-color: var(--bg-secondary);
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  display: flex;
+  box-shadow: $box-shadow-md;
+  transition: all $transition-speed-normal $transition-timing;
+  border-left: 4px solid;
+  
+  // Варианты важности
+  &.critical {
+    border-color: $error-color;
+    
+    .iconWrapper {
+      color: $error-color;
+    }
+    
+    .title {
+      color: $error-color;
+    }
+  }
+  
+  &.high {
+    border-color: darken($warning-color, 10%);
+    
+    .iconWrapper {
+      color: darken($warning-color, 10%);
+    }
+    
+    .title {
+      color: darken($warning-color, 10%);
+    }
+  }
+  
+  &.medium {
+    border-color: $warning-color;
+    
+    .iconWrapper {
+      color: $warning-color;
+    }
+    
+    .title {
+      color: $warning-color;
+    }
+  }
+  
+  &.low {
+    border-color: $info-color;
+    
+    .iconWrapper {
+      color: $info-color;
+    }
+    
+    .title {
+      color: $info-color;
+    }
+  }
+  
+  &.clickable {
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $box-shadow-lg;
+    }
+    
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+  
+  .iconWrapper {
+    margin-right: $spacing-md;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .title {
+    font-size: $font-size-md;
+    font-weight: 600;
+    margin: 0 0 $spacing-xs;
+  }
+  
+  .description {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    margin: 0 0 $spacing-sm;
+    line-height: 1.5;
+  }
+  
+  .timeInfo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: $font-size-xs;
+    color: var(--text-secondary);
+    
+    svg {
+      color: var(--text-secondary);
+    }
+  }
+}

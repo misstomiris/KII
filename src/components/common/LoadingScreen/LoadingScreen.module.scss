@@ -1,0 +1,77 @@
+@import '../../../assets/styles/variables.scss';
+
+.loading-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $bg-primary, darken($bg-primary, 10%));
+  
+  .loading-content {
+    text-align: center;
+    padding: 20px;
+    max-width: 300px;
+    
+    .loading-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+    
+    .loading-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: $text-primary;
+    }
+    
+    .loading-spinner {
+      margin: 0 auto 24px;
+      position: relative;
+      width: 60px;
+      height: 60px;
+      
+      .spinner-ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-top-color: $primary-color;
+        border-radius: 50%;
+        animation: spin 1.5s linear infinite;
+      }
+      
+      .spinner-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background-color: $primary-color;
+        border-radius: 50%;
+      }
+      
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+    
+    .loading-text {
+      font-size: 1rem;
+      color: $text-secondary;
+      margin: 0;
+    }
+  }
+}
+
+/* Темная тема */
+:global(.dark) .loading-screen {
+  background: linear-gradient(135deg, $dark-bg-primary, darken($dark-bg-primary, 5%));
+}
